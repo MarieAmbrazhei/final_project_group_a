@@ -2,8 +2,8 @@ name: Auto Assign
 
 on:
   pull_request:
-    types: [opened, ready_for_review]
-    branches: [main]
+    types: [ opened, ready_for_review ]
+    branches: [ main ]
 
 jobs:
   add-reviews:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto Assign Reviewers
         uses: kentaro-m/auto-assign-action@v2.0.0
