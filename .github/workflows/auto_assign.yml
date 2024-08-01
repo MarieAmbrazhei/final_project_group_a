@@ -2,8 +2,8 @@ name: Auto Assign
 
 on:
   pull_request:
-    types: [ opened, ready_for_review ]
-    branches: [ main ]
+    types: [opened, ready_for_review]
+    branches: [main]
 
 jobs:
   add-reviews:
@@ -14,14 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.PAT }}  # Use the PAT if necessary
 
-      - name: Verify Repository Access
+      - name: Debug Repository
         run: |
-          echo "Checking repository access..."
-          git ls-remote https://github.com/MarieAmbrazhei/final_project_group_a.git
+          echo "Fetching repository information..."
+          git remote -v
+          git branch -a
+          git log --oneline
 
       - name: Auto Assign Reviewers
         uses: kentaro-m/auto-assign-action@v2.0.0
         with:
           configuration-path: '.github/auto_assign_config.yml'
+          token: ${{ secrets.PAT }}
