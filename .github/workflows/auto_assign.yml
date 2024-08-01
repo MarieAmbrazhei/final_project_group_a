@@ -11,18 +11,6 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}  # Use the PAT if necessary
-
-      - name: Debug Repository
-        run: |
-          echo "Fetching repository information..."
-          git remote -v
-          git branch -a
-          git log --oneline
-
       - name: Auto Assign Reviewers
         uses: kentaro-m/auto-assign-action@v2.0.0
         with:
