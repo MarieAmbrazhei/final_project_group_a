@@ -16,6 +16,11 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
 
+      - name: Verify Repository Access
+        run: |
+          echo "Checking repository access..."
+          git ls-remote https://github.com/MarieAmbrazhei/final_project_group_a.git
+
       - name: Auto Assign Reviewers
         uses: kentaro-m/auto-assign-action@v2.0.0
         with:
