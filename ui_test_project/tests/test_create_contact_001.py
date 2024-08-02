@@ -4,8 +4,8 @@ from ui_test_project.pages.add_user_page import AddUserPageHelper
 from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.contact_add_page import AddContactHelper
 from ui_test_project.pages.contact_list_page import ContactListHelper
-from ui_test_project.urls.site_page_urls import PageUrls
 from ui_test_project.constants.site_headers_names import Headers
+from ui_test_project.urls.site_page_urls import PageUrls
 
 
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
