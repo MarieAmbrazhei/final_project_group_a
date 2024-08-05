@@ -2,14 +2,13 @@ import pytest
 from loguru import logger
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
-
-@pytest.fixture(scope="function")
+@pytest.fixture
 def browsers_chrome(request):
     browser_count = request.param
 
-    options = webdriver.ChromeOptions()
+    options = Options()
     options.add_argument("--window-size=1024,768")
     options.add_argument('--disable-cache')
     options.add_argument('--ignore-certificate-errors')
@@ -19,16 +18,15 @@ def browsers_chrome(request):
     drivers = []
 
     logger.info(f'Start {browser_count} browsers')
-    service = Service(executable_path=ChromeDriverManager().install())
+    service = Service()  # Selenium Manager will handle the executable path
 
     for _ in range(browser_count):
         driver = webdriver.Chrome(service=service, options=options)
-        driver.set_window_size(1024, 768)
         drivers.append(driver)
 
     yield drivers
 
-    logger.info('Close browser')
+    logger.info('Close browsers')
     for driver in drivers:
         driver.close()
         driver.quit()

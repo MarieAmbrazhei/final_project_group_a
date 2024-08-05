@@ -5,8 +5,8 @@ from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.contact_add_page import AddContactHelper
 from ui_test_project.pages.contact_details_page import ContactDetailsHelper
 from ui_test_project.pages.contact_list_page import ContactListHelper
-from ui_test_project.constants.site_headers_names import Headers
 from ui_test_project.urls.site_page_urls import PageUrls
+from ui_test_project.utils.constants.site_headers_names import Headers
 
 
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
@@ -60,7 +60,7 @@ def test_delete_contact_003(browsers_chrome):
     contact_details_helper.get_btn_delete_contact().click()
 
     logger.info('Submit contact deleting')
-    contact_details_helper.handle_confirmation_alert(confirm=True)
+    contact_details_helper.confirmation_alert_confirm()
 
     logger.info(f'Check header {Headers.CONTACT_LIST}')
     common_elements_helper.get_page_title(Headers.CONTACT_LIST)

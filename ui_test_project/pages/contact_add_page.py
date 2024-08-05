@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from ui_test_project.pages._base_page import BasePage
-from ui_test_project.constants.rand_methods import Randoms
+from ui_test_project.utils.rand_methods import Randoms
 
 
 class AddContactLocators:
