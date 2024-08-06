@@ -15,6 +15,5 @@ venv*/
 
 # Lecture data
 sessions/
-/home_work/other/temp_data/
 .log
-/reports
+allure_reports/
