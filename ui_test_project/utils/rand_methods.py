@@ -60,4 +60,3 @@ class Randoms:
 
     def generate_random_country(self) -> str:
         return self.fake.country()
-
