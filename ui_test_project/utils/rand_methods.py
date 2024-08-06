@@ -61,6 +61,3 @@ class Randoms:
     def generate_random_country(self) -> str:
         return self.fake.country()
 
-
-var = Randoms()
-print(var.generate_random_country())
