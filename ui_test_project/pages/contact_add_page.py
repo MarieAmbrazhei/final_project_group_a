@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from ui_test_project.pages._base_page import BasePage
 from ui_test_project.utils.rand_methods import Randoms
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class AddContactLocators:

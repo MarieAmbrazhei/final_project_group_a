@@ -1,6 +1,5 @@
 import allure
 import pytest
-
 from ui_test_project.pages.add_user_page import AddUserPageHelper
 from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.contact_add_page import AddContactHelper
@@ -39,6 +38,6 @@ def test_create_contact_with_invalid_data(browsers_chrome):
         add_contact_helper.fill_contact_with_invalid_data()
         common_elements_helper.get_btn_submit().click()
 
-    with allure.step(f'Check if error messages are displayed'):
+    with allure.step('Check if error messages are displayed'):
         error_message = add_contact_helper.get_error_message()
         assert error_message, "Error messages should be displayed for invalid inputs"
