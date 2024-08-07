@@ -1,5 +1,8 @@
 import random
 import string
+from faker import Faker
+
+fake = Faker()
 
 
 class Randoms:
@@ -25,3 +28,47 @@ class Randoms:
         day = random.randint(1, 31)
 
         return f"{year:04d}-{month:02d}-{day:02d}"
+
+    @staticmethod
+    def first_name() -> str:
+        return fake.first_name()
+
+    @staticmethod
+    def last_name() -> str:
+        return fake.last_name()
+
+    @staticmethod
+    def dob() -> str:
+        return fake.date_of_birth().strftime('%Y-%m-%d')
+
+    @staticmethod
+    def email() -> str:
+        return fake.email()
+
+    @staticmethod
+    def phone_number() -> str:
+        return fake.phone_number()
+
+    @staticmethod
+    def street_address() -> str:
+        return fake.street_address()
+
+    @staticmethod
+    def city() -> str:
+        return fake.city()
+
+    @staticmethod
+    def state() -> str:
+        return fake.state()
+
+    @staticmethod
+    def province() -> str:
+        return fake.province()
+
+    @staticmethod
+    def postcode() -> str:
+        return fake.postcode()
+
+    @staticmethod
+    def country() -> str:
+        return fake.country()
