@@ -30,45 +30,45 @@ class Randoms:
         return f"{year:04d}-{month:02d}-{day:02d}"
 
     @staticmethod
-    def generate_random_first_name() -> str:
+    def first_name() -> str:
         return fake.first_name()
 
     @staticmethod
-    def generate_random_last_name() -> str:
+    def last_name() -> str:
         return fake.last_name()
 
     @staticmethod
-    def generate_random_dob() -> str:
+    def dob() -> str:
         return fake.date_of_birth().strftime('%Y-%m-%d')
 
     @staticmethod
-    def generate_random_email() -> str:
+    def email() -> str:
         return fake.email()
 
     @staticmethod
-    def generate_random_phone_number() -> str:
+    def phone_number() -> str:
         return fake.phone_number()
 
     @staticmethod
-    def generate_random_street_address() -> str:
+    def street_address() -> str:
         return fake.street_address()
 
     @staticmethod
-    def generate_random_city() -> str:
+    def city() -> str:
         return fake.city()
 
     @staticmethod
-    def generate_random_state() -> str:
+    def state() -> str:
         return fake.state()
 
     @staticmethod
-    def generate_random_province() -> str:
+    def province() -> str:
         return fake.province()
 
     @staticmethod
-    def generate_random_postcode() -> str:
+    def postcode() -> str:
         return fake.postcode()
 
     @staticmethod
-    def generate_random_country() -> str:
+    def country() -> str:
         return fake.country()
