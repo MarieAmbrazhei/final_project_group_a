@@ -1,6 +1,5 @@
 import allure
 import pytest
-
 from ui_test_project.pages.add_user_page import AddUserPageHelper
 from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.contact_add_page import AddContactHelper
@@ -8,10 +7,17 @@ from ui_test_project.pages.contact_list_page import ContactListHelper
 from ui_test_project.urls.site_page_urls import PageUrls
 from ui_test_project.utils.constants.site_headers_names import Headers
 
+""" Author: Marie Ambrazhei """
+TEST_ID = "36820758"
 
-@allure.suite('Contacts')
+
+@allure.id(TEST_ID)
+@allure.suite('Contact List Table')
+@allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820758",
+                 name="Add Ten Contacts To Table")
+@allure.title("[Contact list | 36820758] Add Ten Contacts To Table")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
-def test_create_contacts_10(browsers_chrome):
+def test_add_ten_contacts_to_table(browsers_chrome):
     browser = browsers_chrome[0]
 
     with allure.step('Create Helpers Instances'):
@@ -29,8 +35,8 @@ def test_create_contacts_10(browsers_chrome):
     with allure.step(f'Check header {Headers.CONTACT_LIST}'):
         common_elements_helper.get_page_title(Headers.CONTACT_LIST)
 
-    for i in range(10):
-        with allure.step('Click on button "Add new contact"'):
+    for i in range(1, 11):
+        with allure.step(f'Click on button "Add new contact" no {i}'):
             contact_list_helper.get_btn_add_new_contact().click()
 
         with allure.step(f'Check header {Headers.ADD_CONTACT}'):

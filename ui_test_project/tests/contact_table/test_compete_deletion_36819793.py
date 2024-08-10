@@ -1,6 +1,5 @@
 import allure
 import pytest
-
 from ui_test_project.pages.add_user_page import AddUserPageHelper
 from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.contact_add_page import AddContactHelper
@@ -9,8 +8,15 @@ from ui_test_project.pages.contact_list_page import ContactListHelper
 from ui_test_project.urls.site_page_urls import PageUrls
 from ui_test_project.utils.constants.site_headers_names import Headers
 
+""" Author: Marie Ambrazhei """
+TEST_ID = "36819793"
 
-@allure.suite('Contacts')
+
+@allure.id(TEST_ID)
+@allure.suite('Contact List Table')
+@allure.testcase("https://group-a.kaiten.ru/space/411620/card/36819793",
+                 name="Complete Deletion of Contacts")
+@allure.title("[Contact list |36819793] Complete Deletion of Contact")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_complete_deletion(browsers_chrome):
     browser = browsers_chrome[0]
@@ -48,9 +54,10 @@ def test_complete_deletion(browsers_chrome):
         expected_number_of_rows = 1
         actual_number_of_rows = len(contact_list_helper.get_all_table_rows())
 
-    assert expected_number_of_rows == actual_number_of_rows, \
-        (f"\nExpected number of rows: {expected_number_of_rows}"
-         f"\nActual number of rows: {actual_number_of_rows}")
+        assert expected_number_of_rows == actual_number_of_rows, \
+            (f"\nExpected number of rows: {expected_number_of_rows}"
+             f"\nActual number of rows: {actual_number_of_rows}")
+
     with allure.step('Click on first row in the table'):
         contact_list_helper.get_all_table_rows()[0].click()
 

@@ -7,10 +7,17 @@ from ui_test_project.pages.contact_list_page import ContactListHelper
 from ui_test_project.urls.site_page_urls import PageUrls
 from ui_test_project.utils.constants.site_headers_names import Headers
 
+""" Author: Marie Ambrazhei """
+TEST_ID = "36820801"
 
-@allure.suite('Contacts')
+
+@allure.id(TEST_ID)
+@allure.suite('Contact List Table')
+@allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820801",
+                 name="Add Contact With Missing Required Fields")
+@allure.title("[Contact list |36820801] Add Contact With Missing Required Fields")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
-def test_create_contact_with_invalid_data(browsers_chrome):
+def test_add_contact_with_missing_required_fields(browsers_chrome):
     browser = browsers_chrome[0]
 
     with allure.step('Create Helpers Instances'):
@@ -38,6 +45,11 @@ def test_create_contact_with_invalid_data(browsers_chrome):
         add_contact_helper.fill_contact_with_invalid_data()
         common_elements_helper.get_btn_submit().click()
 
-    with allure.step('Check if error messages are displayed'):
-        error_message = add_contact_helper.get_error_message()
-        assert error_message, "Error messages should be displayed for invalid inputs"
+    with (allure.step('Check if error messages are displayed')):
+        actual_error_msg = add_contact_helper.get_error_message().text
+        expected_error_msg = (
+            "Contact validation failed: firstName: Path `firstName` is required., "
+            "lastName: Path `lastName` is required.")
+
+        assert actual_error_msg == expected_error_msg, (f"Actual: {actual_error_msg}\nExpected:"
+                                                        f" {expected_error_msg}\n")
