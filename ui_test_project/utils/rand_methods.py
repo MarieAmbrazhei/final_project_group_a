@@ -25,7 +25,7 @@ class Randoms:
     def date_of_birth() -> str:
         year = random.randint(1900, 2000)
         month = random.randint(1, 12)
-        day = random.randint(1, 31)
+        day = random.randint(1, 28)
 
         return f"{year:04d}-{month:02d}-{day:02d}"
 

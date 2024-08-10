@@ -15,6 +15,7 @@ class AddContactLocators:
     LOCATOR_INPUT_STATE_OF_PROVINCE = (By.XPATH, '//input[@id="stateProvince"]')
     LOCATOR_INPUT_POSTAL_CODE = (By.XPATH, '//input[@id="postalCode"]')
     LOCATOR_INPUT_COUNTRY = (By.XPATH, '//input[@id="country"]')
+    LOCATOR_ERROR_MESSAGE = (By.XPATH, '//span[@id="error"]')
 
 
 class AddContactHelper(BasePage):
@@ -66,3 +67,15 @@ class AddContactHelper(BasePage):
         self.get_input_state_of_province().send_keys(Randoms.rand_word(length=10))
         self.get_input_postal_code().send_keys(Randoms.int_gen(length=4))
         self.get_input_country().send_keys(Randoms.rand_word(length=10))
+
+    def fill_contact_with_invalid_data(self):
+        self.fill_field(AddContactLocators.LOCATOR_INPUT_FIRST_NAME, '')
+        self.fill_field(AddContactLocators.LOCATOR_INPUT_LAST_NAME, '')
+
+    def fill_field(self, locator, data):
+        field = self.find_element_visible(locator)
+        field.clear()
+        field.send_keys(data)
+
+    def get_error_message(self):
+        return self.find_element_visible(AddContactLocators.LOCATOR_ERROR_MESSAGE)
