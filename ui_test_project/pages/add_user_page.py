@@ -27,9 +27,23 @@ class AddUserPageHelper(BasePage):
 
     """ METHODS """
 
-    def register_main_user(self):
+    def register_main_user(
+            self,
+            *,
+            email=None,
+            password=None):
+
         self.get_input_first_name().send_keys(Randoms.rand_word(length=10))
         self.get_input_last_name().send_keys(Randoms.rand_word(length=10))
-        self.get_input_email_name().send_keys(Randoms.email_gen(length=10))
-        self.get_input_password_name().send_keys(Randoms.int_gen(length=10))
+
+        if not email:
+            self.get_input_email_name().send_keys(Randoms.email_gen(length=10))
+        else:
+            self.get_input_email_name().send_keys(email)
+
+        if not password:
+            self.get_input_password_name().send_keys(Randoms.int_gen(length=10))
+        else:
+            self.get_input_password_name().send_keys(password)
+
         CommonElementsHelper(self.driver).get_btn_submit().click()

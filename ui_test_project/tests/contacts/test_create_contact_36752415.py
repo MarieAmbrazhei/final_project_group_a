@@ -8,17 +8,24 @@ from ui_test_project.pages.contact_list_page import ContactListHelper
 from ui_test_project.urls.site_page_urls import PageUrls
 from ui_test_project.utils.constants.site_headers_names import Headers
 
+""" Author: Yury Buzinau """
+TEST_ID = "36752415"
 
+
+@allure.id(TEST_ID)
 @allure.suite('Contacts')
+@allure.testcase("https://group-a.kaiten.ru/space/411620/card/36752415",
+                 name="Create one contact")
+@allure.title("[Contacts | 36752415]  Create one contact")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
-def test_create_contact_001(browsers_chrome):
+def test_create_contact_36752415(browsers_chrome):
     browser = browsers_chrome[0]
 
-    with allure.step('Create Helpers Instances'):
-        common_elements_helper = CommonElementsHelper(browser)
-        add_user_page_helper = AddUserPageHelper(browser)
-        contact_list_helper = ContactListHelper(browser)
-        add_contact_helper = AddContactHelper(browser)
+    # CREATE HELPERS INSTANCES
+    common_elements_helper = CommonElementsHelper(browser)
+    add_user_page_helper = AddUserPageHelper(browser)
+    contact_list_helper = ContactListHelper(browser)
+    add_contact_helper = AddContactHelper(browser)
 
     with allure.step('Go to adding user page'):
         add_user_page_helper.get_url(PageUrls.PAGE_ADD_USER_URL)
