@@ -15,7 +15,7 @@ def browsers_chrome(request):
     options.add_argument('--disable-cache')
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--disable-blink-features=MetricsInterceptor')
-    options.add_argument("--headless=new")
+    # options.add_argument("--headless=new")
 
     drivers = []
 
