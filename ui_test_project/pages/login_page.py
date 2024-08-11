@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 from ui_test_project.pages._base_page import BasePage
-from ui_test_project.pages.contact_list_page import ContactListLocators
 
 
 class LoginPageLocators:

@@ -42,7 +42,7 @@ def test_successful_login_36836333(browsers_chrome):
     with allure.step(f'Check header {Headers.CONTACT_LIST}'):
         common_elements_helper.get_page_title(Headers.CONTACT_LIST)
 
-    with allure.step(f"Logout from admin panel"):
+    with allure.step("Logout from admin panel"):
         common_elements_helper.get_btn_logout().click()
 
     with allure.step(f'Check header {Headers.CONTACT_LIST_APP}'):
