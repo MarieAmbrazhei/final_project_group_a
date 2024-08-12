@@ -5,3 +5,13 @@ class PageUrls:
     PAGE_ADD_CONTACT_URL = 'https://thinking-tester-contact-list.herokuapp.com/addContact'
     PAGE_CONTACT_DETAILS_URL = 'https://thinking-tester-contact-list.herokuapp.com/contactDetails'
     PAGE_EDIT_CONTACT_URL = 'https://thinking-tester-contact-list.herokuapp.com/editContact'
+
+
+class ApiUrls:
+    BASE_URL = "https://thinking-tester-contact-list.herokuapp.com"
+    POST_ADD_USER = BASE_URL + "/users"
+    GET_USER_PROFILE = BASE_URL + "/users/me"
+    PATCH_UPDATE_USER = BASE_URL + "/users/me"
+    POST_LOGOUT_USER = BASE_URL + "/users/logout"
+    POST_LOGIN_USER = BASE_URL + "/users/login"
+    DELETE_USER = BASE_URL + "/users/me"
