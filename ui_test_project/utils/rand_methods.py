@@ -47,7 +47,7 @@ class Randoms:
 
     @staticmethod
     def phone_number() -> str:
-        return fake.phone_number()
+        return fake.phone_number()[:15]
 
     @staticmethod
     def street_address() -> str:
@@ -60,10 +60,6 @@ class Randoms:
     @staticmethod
     def state() -> str:
         return fake.state()
-
-    @staticmethod
-    def province() -> str:
-        return fake.province()
 
     @staticmethod
     def postcode() -> str:
