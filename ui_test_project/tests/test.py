@@ -13,22 +13,23 @@ def test_test():
     user_email = user_data['user']['email']
 
     time.sleep(1)
-    print(f"{user_pass=} ")
-    print(f"{user_email=} ")
+    new_contact_data_1 = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
+    new_contact_id_1 = DE.extract_value_by_key(new_contact_data_1, "_id")
 
-    new_contact_data = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
-    # new_contact_data = ApiMethodsUsers.get_user_profile(bearer_token=user_token)
-    # new_contact_data = ApiMethodsUsers.patch_update_user(bearer_token=user_token)
-    # new_contact_data = ApiMethodsUsers.post_log_out_user(bearer_token=user_token)
-    # new_contact_data = ApiMethodsUsers.post_log_out_user(bearer_token=user_token)
-    # new_contact_data = ApiMethodsUsers.post_log_in_user(email=user_email, password=user_pass)
-    # new_contact_data = ApiMethodsUsers.del_delete_user(bearer_token=user_token)
-    # new_contact_data = ApiMethodsContacts.get_contact_list(bearer_token=user_token)
-    # new_contact_data = ApiMethodsContacts.get_contact(bearer_token=user_token)
-    # new_contact_data = ApiMethodsContacts.get_contact(bearer_token=user_token)
-    # new_contact_data = ApiMethodsContacts.put_update_contact(bearer_token=user_token)
-    new_contact_data = ApiMethodsContacts.patch_update_contact(bearer_token=user_token)
-    # new_contact_data = ApiMethodsContacts.del_delete_contact(bearer_token=user_token)
+    new_contact_data_2 = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
+    new_contact_id_2 = DE.extract_value_by_key(new_contact_data_2, "_id")
+
+    contact_list_data = ApiMethodsContacts.get_contact_list(bearer_token=user_token)
+    time.sleep(1)
+    print(len(contact_list_data))
+
+    new_contact_data = ApiMethodsContacts.del_delete_contact(
+        contact_id=new_contact_id_1,
+        bearer_token=user_token)
+
+    contact_list_data = ApiMethodsContacts.get_contact_list(bearer_token=user_token)
+    time.sleep(1)
+    print(len(contact_list_data))
 
 
 # user_token_2 = DE.extract_value_by_key(user_data, 'token')

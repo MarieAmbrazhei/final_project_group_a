@@ -20,4 +20,4 @@ class ApiUrls:
     GET_CONTACT = BASE_URL + "/contacts/"
     PUT_UPDATE_CONTACT = BASE_URL + "/contacts/"
     PATCH_UPDATE_CONTACT = BASE_URL + "/contacts/"
-    DELETE_CONTACT = BASE_URL + "/contacts/"
+    DELETE_CONTACT = BASE_URL + "/contacts/{contact_id}"
