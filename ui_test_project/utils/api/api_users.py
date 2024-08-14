@@ -153,7 +153,6 @@ class ApiMethodsUsers:
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"User log Out. Status code: {act_code} ")
 
-                return
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -223,7 +222,6 @@ class ApiMethodsUsers:
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Delete User. Status code: {act_code} ")
 
-                return
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")

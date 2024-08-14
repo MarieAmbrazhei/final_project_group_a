@@ -109,14 +109,15 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_contact(
-            bearer_token: str
+            bearer_token: str,
+            contact_id: str
     ):
 
         """Available Response Keys:
        _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
         postalCode, country, owner, __v
         """
-        get_url = ApiUrls.GET_CONTACT
+        get_url = ApiUrls.GET_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Get Contact"):
@@ -143,36 +144,57 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def put_update_contact(
-            bearer_token: str = None,
-            first_name: str = None,
-            last_name: str = None,
-            birthdate: str = None,
-            email: str = None,
-            phone: str = None,
-            street1: str = None,
-            street2: str = None,
-            city: str = None,
-            state_province: str = None,
-            postal_code: str = None,
-            country: str = None,
+            bearer_token: str,
+            first_name: str,
+            last_name: str,
+            birthdate: str,
+            email: str,
+            phone: str,
+            street1: str,
+            street2: str,
+            city: str,
+            state_province: str,
+            postal_code: str,
+            country: str,
+            contact_id: str
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
         """
 
-        put_url = ApiUrls.PUT_UPDATE_CONTACT
+        put_url = ApiUrls.PUT_UPDATE_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Update Contact"):
                 logger.info(f"Update Contact")
 
-                json_data = {}
+                with allure.step(f"API | Update Contact Partial"):
+                    logger.info(f"Update Contact Partial")
 
-                if first_name:
-                    json_data['firstName'] = first_name
-
-
+                    json_data = {}
+                    if first_name:
+                        json_data['firstName'] = first_name
+                    if last_name:
+                        json_data['lastName'] = last_name
+                    if birthdate:
+                        json_data['birthdate'] = birthdate
+                    if email:
+                        json_data['email'] = email
+                    if phone:
+                        json_data['phone'] = phone
+                    if street1:
+                        json_data['street1'] = street1
+                    if street2:
+                        json_data['street2'] = street2
+                    if city:
+                        json_data['city'] = city
+                    if state_province:
+                        json_data['stateProvince'] = state_province
+                    if postal_code:
+                        json_data['postalCode'] = postal_code
+                    if country:
+                        json_data['country'] = country
 
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
@@ -193,24 +215,54 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def patch_update_contact(
-            bearer_token: str = None,
-            first_name: str = None,
+            bearer_token: str,
+            first_name: str,
+            last_name: str,
+            birthdate: str,
+            email: str,
+            phone: str,
+            street1: str,
+            street2: str,
+            city: str,
+            state_province: str,
+            postal_code: str,
+            country: str,
+            contact_id: str
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
         """
 
-        patch_url = ApiUrls.PATCH_UPDATE_CONTACT
+        patch_url = ApiUrls.PATCH_UPDATE_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Update Contact Partial"):
                 logger.info(f"Update Contact Partial")
 
                 json_data = {}
-
                 if first_name:
                     json_data['firstName'] = first_name
+                if last_name:
+                    json_data['lastName'] = last_name
+                if birthdate:
+                    json_data['birthdate'] = birthdate
+                if email:
+                    json_data['email'] = email
+                if phone:
+                    json_data['phone'] = phone
+                if street1:
+                    json_data['street1'] = street1
+                if street2:
+                    json_data['street2'] = street2
+                if city:
+                    json_data['city'] = city
+                if state_province:
+                    json_data['stateProvince'] = state_province
+                if postal_code:
+                    json_data['postalCode'] = postal_code
+                if country:
+                    json_data['country'] = country
 
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
@@ -233,7 +285,7 @@ class ApiMethodsContacts:
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def del_delete_contact(
             contact_id: str,
-            bearer_token: str,
+            bearer_token: str
     ):
         """Delete a user.
         This request sends a DELETE request to the specified endpoint to delete a user.
@@ -259,14 +311,3 @@ class ApiMethodsContacts:
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
             raise
-
-
-if __name__ == '__main__':
-    first_name = 'Ambra'
-
-    json_data = {}
-
-    if first_name:
-        json_data['firstName'] = first_name
-
-        print(json_data)
