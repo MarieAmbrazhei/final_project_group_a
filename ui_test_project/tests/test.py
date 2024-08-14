@@ -14,12 +14,13 @@ def test_test():
 
     time.sleep(1)
     new_contact_data_1 = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
+    new_contact_data_1 = ApiMethodsContacts.get_contact(bearer_token=user_token)
     new_contact_id_1 = DE.extract_value_by_key(new_contact_data_1, "_id")
 
-    # new_contact_data_2 = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
-    # new_contact_id_2 = DE.extract_value_by_key(new_contact_data_2, "_id")
+    new_contact_data_2 = ApiMethodsContacts.post_add_contact(bearer_token=user_token)
+    new_contact_id_2 = DE.extract_value_by_key(new_contact_data_2, "_id")
 
-    contact_list_data = ApiMethodsContacts.get_contact(bearer_token=user_token)
+    contact_list_data = ApiMethodsContacts.get_contact_list(bearer_token=user_token)
     time.sleep(1)
     print(len(contact_list_data))
 
@@ -27,7 +28,7 @@ def test_test():
         contact_id=new_contact_id_1,
         bearer_token=user_token)
 
-    contact_list_data = ApiMethodsContacts.get_contact(bearer_token=user_token)
+    contact_list_data = ApiMethodsContacts.get_contact_list(bearer_token=user_token)
     time.sleep(1)
     print(len(contact_list_data))
 
