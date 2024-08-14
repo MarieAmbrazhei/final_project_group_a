@@ -4,7 +4,7 @@ import pytest
 from ui_test_project.pages.add_user_page import AddUserPageHelper
 from ui_test_project.pages.common_el_page import CommonElementsHelper
 from ui_test_project.pages.login_page import LoginPageHelper
-from ui_test_project.urls.site_page_urls import PageUrls
+from ui_test_project.urls.project_urls import PageUrls
 from ui_test_project.utils.rand_methods import Randoms
 
 """ Author: Yury Buzinau """
