@@ -1,4 +1,3 @@
-import pprint
 from http import HTTPStatus
 
 import allure
@@ -8,7 +7,6 @@ from retrying import retry
 
 from ui_test_project.urls.project_urls import ApiUrls
 from ui_test_project.utils.rand_methods import Randoms
-from ui_test_project.utils.api.api_users import ApiMethodsUsers
 
 
 class ApiMethodsContacts:
@@ -145,22 +143,17 @@ class ApiMethodsContacts:
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def put_update_contact(
             bearer_token: str,
-            first_name: str,
-            last_name: str,
-            birthdate: str,
-            email: str,
-            phone: str,
-            street1: str,
-            street2: str,
-            city: str,
-            state_province: str,
-            postal_code: str,
-            country: str,
-            contact_id: str
+            contact_id: str,
+            **kwargs
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
+         \nRequired fields:
+         firstName, lastName
+         \nOptional fields:
+         birthdate, email, phone, street1, street2, city, stateProvince,
+         postalCode, country
         """
 
         put_url = ApiUrls.PUT_UPDATE_CONTACT.format(contact_id=contact_id)
@@ -169,36 +162,12 @@ class ApiMethodsContacts:
             with allure.step(f"API | Update Contact"):
                 logger.info(f"Update Contact")
 
-                with allure.step(f"API | Update Contact Partial"):
-                    logger.info(f"Update Contact Partial")
-
-                    json_data = {}
-                    if first_name:
-                        json_data['firstName'] = first_name
-                    if last_name:
-                        json_data['lastName'] = last_name
-                    if birthdate:
-                        json_data['birthdate'] = birthdate
-                    if email:
-                        json_data['email'] = email
-                    if phone:
-                        json_data['phone'] = phone
-                    if street1:
-                        json_data['street1'] = street1
-                    if street2:
-                        json_data['street2'] = street2
-                    if city:
-                        json_data['city'] = city
-                    if state_province:
-                        json_data['stateProvince'] = state_province
-                    if postal_code:
-                        json_data['postalCode'] = postal_code
-                    if country:
-                        json_data['country'] = country
+                json_data = {k: v for k, v in kwargs.items() if v is not None}
 
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
                 }
+
                 response = requests.put(url=put_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
                 exp_code = HTTPStatus.OK
