@@ -18,11 +18,11 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_add_user(
-                      first_name: str = None,
-                      last_name: str = None,
-                      email: str = None,
-                      password: str = None
-                      ):
+            first_name: str = None,
+            last_name: str = None,
+            email: str = None,
+            password: str = None
+    ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
         """
@@ -85,15 +85,15 @@ class ApiMethodsUsers:
             logger.warning(f"Error while executing the request: {str(e)}")
             raise
 
-    @classmethod
+    @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
-    def patch_update_user(cls,
-                          first_name: str = None,
-                          last_name: str = None,
-                          email: str = None,
-                          password: str = None,
-                          bearer_token: str = None
-                          ):
+    def patch_update_user(
+            first_name: str = None,
+            last_name: str = None,
+            email: str = None,
+            password: str = None,
+            bearer_token: str = None
+    ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
         """
@@ -103,13 +103,12 @@ class ApiMethodsUsers:
         try:
             with allure.step(f"API | Update User"):
                 logger.info(f"Update User")
-                cls.email = email if email else Randoms.email()
-                cls.password = password if password else Randoms.int_gen(10)
+
                 json_data = {
                     "firstName": first_name if first_name else Randoms.first_name(),
                     "lastName": last_name if last_name else Randoms.last_name(),
-                    "email": cls.email,
-                    "password": cls.password
+                    "email": email if email else Randoms.email(),
+                    "password": password if password else Randoms.int_gen(10)
                 }
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
@@ -122,7 +121,6 @@ class ApiMethodsUsers:
                 assert act_code == exp_code, \
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Update user. Status code: {act_code} ")
-                pprint.pprint(response.json())
                 return response.json()
 
         except Exception as e:
@@ -155,7 +153,7 @@ class ApiMethodsUsers:
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"User log Out. Status code: {act_code} ")
 
-                return response.status_code
+                return
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -163,7 +161,11 @@ class ApiMethodsUsers:
 
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
-    def post_log_in_user(email: str, password: str):
+    def post_log_in_user(
+            email: str = None,
+            password: str = None,
+            bearer_token: str = None
+    ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
         """
@@ -174,11 +176,14 @@ class ApiMethodsUsers:
                 logger.info(f"Log In User")
 
                 json_data = {
-                    "email": email,
-                    "password": password
+                    "email": email if email else Randoms.email(),
+                    "password": password if password else Randoms.int_gen(10)
+                }
+                headers = {
+                    'Authorization': f'Bearer {bearer_token}'
                 }
 
-                response = requests.post(url=log_in_url, json=json_data, timeout=5)
+                response = requests.post(url=log_in_url, headers=headers, json=json_data, timeout=5)
                 act_code = response.status_code
                 exp_code = HTTPStatus.OK
 
@@ -218,7 +223,7 @@ class ApiMethodsUsers:
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Delete User. Status code: {act_code} ")
 
-                return response.status_code
+                return
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
