@@ -1,4 +1,3 @@
-import pprint
 from http import HTTPStatus
 
 import allure
@@ -105,10 +104,10 @@ class ApiMethodsUsers:
                 logger.info(f"Update User")
 
                 json_data = {
-                    "firstName": first_name if first_name else Randoms.first_name(),
-                    "lastName": last_name if last_name else Randoms.last_name(),
-                    "email": email if email else Randoms.email(),
-                    "password": password if password else Randoms.int_gen(10)
+                    "firstName": first_name,
+                    "lastName": last_name,
+                    "email": email,
+                    "password": password
                 }
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
@@ -153,7 +152,6 @@ class ApiMethodsUsers:
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"User log Out. Status code: {act_code} ")
 
-
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
             raise
@@ -175,8 +173,8 @@ class ApiMethodsUsers:
                 logger.info(f"Log In User")
 
                 json_data = {
-                    "email": email if email else Randoms.email(),
-                    "password": password if password else Randoms.int_gen(10)
+                    "email": email,
+                    "password": password
                 }
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
@@ -221,7 +219,6 @@ class ApiMethodsUsers:
                 assert act_code == exp_code, \
                     ApiMethodsUsers._error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Delete User. Status code: {act_code} ")
-
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
