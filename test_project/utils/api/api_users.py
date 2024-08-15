@@ -44,7 +44,7 @@ class ApiMethodsUsers:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Add User. Status code: {act_code} ")
 
-                return response.json(), json_data['password']
+                return response, json_data['password']
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -76,7 +76,7 @@ class ApiMethodsUsers:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Get User Profile. Status code: {act_code} ")
 
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -118,7 +118,8 @@ class ApiMethodsUsers:
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Update user. Status code: {act_code} ")
-                return response.json()
+
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -149,6 +150,8 @@ class ApiMethodsUsers:
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"User log Out. Status code: {act_code} ")
+
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -186,7 +189,7 @@ class ApiMethodsUsers:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
 
                 logger.success(f"Log In User. Status code: {act_code} ")
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -217,6 +220,8 @@ class ApiMethodsUsers:
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Delete User. Status code: {act_code} ")
+
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")

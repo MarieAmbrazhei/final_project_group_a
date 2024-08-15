@@ -62,7 +62,7 @@ class ApiMethodsContacts:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Add Contact. Status code: {act_code} ")
 
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -96,7 +96,7 @@ class ApiMethodsContacts:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Get Contact List. Status code: {act_code} ")
 
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -131,7 +131,7 @@ class ApiMethodsContacts:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Get Contact List. Status code: {act_code} ")
 
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -173,7 +173,8 @@ class ApiMethodsContacts:
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Update Contact. Status code: {act_code} ")
-                return response.json()
+
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -242,7 +243,7 @@ class ApiMethodsContacts:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Update Contact Partial. Status code: {act_code} ")
 
-                return response.json()
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -274,6 +275,8 @@ class ApiMethodsContacts:
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Delete Contact. Status code: {act_code} ")
+
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
