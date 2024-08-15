@@ -26,6 +26,7 @@ class ApiMethodsContacts:
                          state_province: str = None,
                          postal_code: str = None,
                          country: str = None,
+                         status_code: int = HTTPStatus.CREATED
                          ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
@@ -56,7 +57,7 @@ class ApiMethodsContacts:
                 }
                 response = requests.post(url=post_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.CREATED
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -71,7 +72,8 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_contact_list(
-            bearer_token: str
+            bearer_token: str,
+            status_code: int = HTTPStatus.OK
     ):
 
         """Available Response Keys:
@@ -90,7 +92,7 @@ class ApiMethodsContacts:
 
                 response = requests.get(url=get_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -106,7 +108,8 @@ class ApiMethodsContacts:
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_contact(
             bearer_token: str,
-            contact_id: str
+            contact_id: str,
+            status_code: int = HTTPStatus.OK
     ):
 
         """Available Response Keys:
@@ -125,7 +128,7 @@ class ApiMethodsContacts:
 
                 response = requests.get(url=get_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -142,7 +145,8 @@ class ApiMethodsContacts:
     def put_update_contact(
             bearer_token: str,
             contact_id: str,
-            **kwargs
+            **kwargs,
+            status_code: int = HTTPStatus.OK
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
@@ -168,7 +172,7 @@ class ApiMethodsContacts:
 
                 response = requests.put(url=put_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -195,7 +199,8 @@ class ApiMethodsContacts:
             state_province: str,
             postal_code: str,
             country: str,
-            contact_id: str
+            contact_id: str,
+            status_code: int = HTTPStatus.OK
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
@@ -237,7 +242,7 @@ class ApiMethodsContacts:
                 }
                 response = requests.patch(url=patch_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -253,7 +258,8 @@ class ApiMethodsContacts:
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def del_delete_contact(
             contact_id: str,
-            bearer_token: str
+            bearer_token: str,
+            status_code: int = HTTPStatus.OK
     ):
         """Delete a user.
         This request sends a DELETE request to the specified endpoint to delete a user.
@@ -270,7 +276,7 @@ class ApiMethodsContacts:
 
                 response = requests.delete(url=del_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)

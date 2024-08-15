@@ -18,7 +18,8 @@ class ApiMethodsUsers:
             first_name: str = None,
             last_name: str = None,
             email: str = None,
-            password: str = None
+            password: str = None,
+            status_code: int = HTTPStatus.CREATED
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
@@ -38,13 +39,13 @@ class ApiMethodsUsers:
 
                 response = requests.post(url=post_url, json=json_data, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.CREATED
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Add User. Status code: {act_code} ")
 
-                return response, json_data['password']
+                return response
 
         except Exception as e:
             logger.warning(f"Error while executing the request: {str(e)}")
@@ -53,7 +54,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_user_profile(
-            bearer_token: str = None
+            bearer_token: str = None,
+            status_code: int = HTTPStatus.OK,
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v
@@ -70,7 +72,7 @@ class ApiMethodsUsers:
 
                 response = requests.get(url=get_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -89,7 +91,9 @@ class ApiMethodsUsers:
             last_name: str = None,
             email: str = None,
             password: str = None,
-            bearer_token: str = None
+            bearer_token: str = None,
+            status_code: int = HTTPStatus.OK
+
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
@@ -113,7 +117,7 @@ class ApiMethodsUsers:
 
                 response = requests.patch(url=patch_url, headers=headers, json=json_data, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -128,7 +132,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_log_out_user(
-            bearer_token: str = None
+            bearer_token: str = None,
+            status_code: int = HTTPStatus.OK
     ):
         """Log out user from the system.
         The response should indicate success without necessarily returning user information.
@@ -145,7 +150,7 @@ class ApiMethodsUsers:
 
                 response = requests.post(url=log_out_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -162,7 +167,8 @@ class ApiMethodsUsers:
     def post_log_in_user(
             email: str = None,
             password: str = None,
-            bearer_token: str = None
+            bearer_token: str = None,
+            status_code: int = HTTPStatus.OK
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
@@ -183,7 +189,7 @@ class ApiMethodsUsers:
 
                 response = requests.post(url=log_in_url, headers=headers, json=json_data, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
@@ -198,7 +204,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def del_delete_user(
-            bearer_token: str = None
+            bearer_token: str = None,
+            status_code: int = HTTPStatus.OK
     ):
         """Delete a user.
         This request sends a DELETE request to the specified endpoint to delete a user.
@@ -215,7 +222,7 @@ class ApiMethodsUsers:
 
                 response = requests.delete(url=del_url, headers=headers, timeout=5)
                 act_code = response.status_code
-                exp_code = HTTPStatus.OK
+                exp_code = status_code
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)

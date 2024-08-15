@@ -11,7 +11,8 @@ TEST_ID = "36995050"
 
 @pytest.fixture
 def setup_method_36995050():
-    response, token = ApiMethodsUsers.post_add_user()
+    response = ApiMethodsUsers.post_add_user(status_code=201)
+    token = response.json()['token']
 
     yield Response(response)
 
@@ -25,6 +26,7 @@ def setup_method_36995050():
                  name="POST Add Main User")
 @allure.title("[Users | 36995050 ] POST Add Main User")
 def test_post_add_main_user_36995050(setup_method_36995050):
+
     user_response = setup_method_36995050
 
-    user_response.assert_status_code(200).validate(UserResponseSchema)
+    user_response.assert_status_code(201).validate(UserResponseSchema)
