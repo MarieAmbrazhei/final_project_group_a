@@ -11,12 +11,13 @@ TEST_ID = "36995050"
 
 @pytest.fixture
 def setup_method_36995050():
-    response = ApiMethodsUsers.post_add_user(status_code=201)
-    token = response.json()['token']
+    response_add_user = ApiMethodsUsers.post_add_user(status_code=201).json()
+    user_token = response_add_user['token']
 
-    yield Response(response)
+    yield Response(user_token)
 
-    ApiMethodsUsers.del_delete_user(bearer_token=token)
+    # Delete Test Data
+    ApiMethodsUsers.del_delete_user(bearer_token=user_token)
 
 
 @allure.id(TEST_ID)
@@ -29,4 +30,8 @@ def test_post_add_main_user_36995050(setup_method_36995050):
 
     user_response = setup_method_36995050
 
-    user_response.assert_status_code(201).validate(UserResponseSchema)
+    with allure.step("Verify. Response Status Code: 201"):
+        user_response.assert_status_code(201)
+
+    with allure.step("Verify. Response has a valid schema"):
+        user_response.validate(UserResponseSchema)

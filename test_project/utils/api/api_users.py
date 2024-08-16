@@ -15,6 +15,7 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_add_user(
+            *,
             first_name: str = None,
             last_name: str = None,
             email: str = None,
@@ -54,7 +55,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_user_profile(
-            bearer_token: str = None,
+            *,
+            bearer_token: str,
             status_code: int = HTTPStatus.OK,
     ):
         """Available Response Keys:
@@ -87,11 +89,12 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def patch_update_user(
+            *,
+            bearer_token: str,
             first_name: str = None,
             last_name: str = None,
             email: str = None,
             password: str = None,
-            bearer_token: str = None,
             status_code: int = HTTPStatus.OK
 
     ):
@@ -132,7 +135,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_log_out_user(
-            bearer_token: str = None,
+            *,
+            bearer_token: str,
             status_code: int = HTTPStatus.OK
     ):
         """Log out user from the system.
@@ -165,9 +169,10 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_log_in_user(
+            *,
+            bearer_token: str,
             email: str = None,
             password: str = None,
-            bearer_token: str = None,
             status_code: int = HTTPStatus.OK
     ):
         """Available Response Keys:
@@ -204,7 +209,8 @@ class ApiMethodsUsers:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def del_delete_user(
-            bearer_token: str = None,
+            *,
+            bearer_token: str,
             status_code: int = HTTPStatus.OK
     ):
         """Delete a user.

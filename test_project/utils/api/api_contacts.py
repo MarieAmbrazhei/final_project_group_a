@@ -14,20 +14,22 @@ class ApiMethodsContacts:
 
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
-    def post_add_contact(bearer_token: str = None,
-                         first_name: str = None,
-                         last_name: str = None,
-                         birthdate: str = None,
-                         email: str = None,
-                         phone: str = None,
-                         street1: str = None,
-                         street2: str = None,
-                         city: str = None,
-                         state_province: str = None,
-                         postal_code: str = None,
-                         country: str = None,
-                         status_code: int = HTTPStatus.CREATED
-                         ):
+    def post_add_contact(
+            *,
+            bearer_token: str,
+            first_name: str = None,
+            last_name: str = None,
+            birthdate: str = None,
+            email: str = None,
+            phone: str = None,
+            street1: str = None,
+            street2: str = None,
+            city: str = None,
+            state_province: str = None,
+            postal_code: str = None,
+            country: str = None,
+            status_code: int = HTTPStatus.CREATED
+    ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
@@ -72,6 +74,7 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_contact_list(
+            *,
             bearer_token: str,
             status_code: int = HTTPStatus.OK
     ):
@@ -107,6 +110,7 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def get_contact(
+            *,
             bearer_token: str,
             contact_id: str,
             status_code: int = HTTPStatus.OK
@@ -143,10 +147,11 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def put_update_contact(
+            *,
             bearer_token: str,
             contact_id: str,
-            **kwargs,
-            status_code: int = HTTPStatus.OK
+            status_code: int = HTTPStatus.OK,
+            **kwargs
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
@@ -187,6 +192,7 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def patch_update_contact(
+            *,
             bearer_token: str,
             first_name: str,
             last_name: str,
@@ -257,6 +263,7 @@ class ApiMethodsContacts:
     @staticmethod
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def del_delete_contact(
+            *,
             contact_id: str,
             bearer_token: str,
             status_code: int = HTTPStatus.OK
