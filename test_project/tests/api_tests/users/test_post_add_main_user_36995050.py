@@ -11,8 +11,8 @@ TEST_ID = "36995050"
 
 @pytest.fixture
 def setup_method_36995050():
-    response_post_user = ApiMethodsUsers.post_add_user(status_code=201).json()
-    user_token = response_post_user['token']
+    response_post_user = ApiMethodsUsers.post_add_user(status_code=201)
+    user_token = response_post_user.json()['token']
 
     yield Response(response_post_user)
 

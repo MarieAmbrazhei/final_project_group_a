@@ -23,7 +23,7 @@ class ContactListFirstSchema(BaseModel):
     id: str = Field(alias='_id')
     firstName: str
     lastName: str
-    birthdate: str
+    birthdate: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     street1: Optional[str] = None
@@ -40,7 +40,7 @@ class ContactListSecondSchema(BaseModel):
     id: str = Field(alias='_id')
     firstName: str
     lastName: str
-    birthdate: str
+    birthdate: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     street1: Optional[str] = None
@@ -53,11 +53,11 @@ class ContactListSecondSchema(BaseModel):
     version: int = Field(alias='__v')
 
 
-class ContactOneSchema(BaseModel):
+class ContactGetSchema(BaseModel):
     id: str = Field(alias='_id')
     firstName: str
     lastName: str
-    birthdate: str
+    birthdate: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     street1: Optional[str] = None
@@ -74,7 +74,7 @@ class ContactUpdateSchema(BaseModel):
     id: str = Field(alias='_id')
     firstName: str
     lastName: str
-    birthdate: str
+    birthdate: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     street1: Optional[str] = None
@@ -91,7 +91,7 @@ class ContactUpdatePatchSchema(BaseModel):
     id: str = Field(alias='_id')
     firstName: str
     lastName: str
-    birthdate: str
+    birthdate: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     street1: Optional[str] = None

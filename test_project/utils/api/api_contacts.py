@@ -170,11 +170,10 @@ class ApiMethodsContacts:
                 logger.info(f"Update Contact")
 
                 json_data = {k: v for k, v in kwargs.items() if v is not None}
-
+                json_data = {**json_data, **{'_id': contact_id}}
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
                 }
-
                 response = requests.put(url=put_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
                 exp_code = status_code
@@ -194,16 +193,16 @@ class ApiMethodsContacts:
     def patch_update_contact(
             *,
             bearer_token: str,
-            first_name: str,
-            last_name: str,
+            firstName: str,
+            lastName: str,
             birthdate: str,
             email: str,
             phone: str,
             street1: str,
             street2: str,
             city: str,
-            state_province: str,
-            postal_code: str,
+            stateProvince: str,
+            postalCode: str,
             country: str,
             contact_id: str,
             status_code: int = HTTPStatus.OK
@@ -220,10 +219,10 @@ class ApiMethodsContacts:
                 logger.info(f"Update Contact Partial")
 
                 json_data = {}
-                if first_name:
-                    json_data['firstName'] = first_name
-                if last_name:
-                    json_data['lastName'] = last_name
+                if firstName:
+                    json_data['firstName'] = firstName
+                if lastName:
+                    json_data['lastName'] = lastName
                 if birthdate:
                     json_data['birthdate'] = birthdate
                 if email:
@@ -236,16 +235,19 @@ class ApiMethodsContacts:
                     json_data['street2'] = street2
                 if city:
                     json_data['city'] = city
-                if state_province:
-                    json_data['stateProvince'] = state_province
-                if postal_code:
-                    json_data['postalCode'] = postal_code
+                if stateProvince:
+                    json_data['stateProvince'] = stateProvince
+                if postalCode:
+                    json_data['postalCode'] = postalCode
                 if country:
                     json_data['country'] = country
+
+                json_data = {**json_data, **{'_id': contact_id}}
 
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
                 }
+
                 response = requests.patch(url=patch_url, json=json_data, headers=headers, timeout=5)
                 act_code = response.status_code
                 exp_code = status_code
@@ -282,6 +284,7 @@ class ApiMethodsContacts:
                 }
 
                 response = requests.delete(url=del_url, headers=headers, timeout=5)
+
                 act_code = response.status_code
                 exp_code = status_code
 
