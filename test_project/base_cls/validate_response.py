@@ -18,7 +18,9 @@ class Response:
 
     def assert_status_code(self, status_code):
         if isinstance(status_code, list):
-            assert self.response_status in status_code, GlobalErrorMsg.WRONG_STATUS_CODE.value
+            assert self.response_status in status_code, \
+                GlobalErrorMsg.error_msg(exp_code=status_code, act_code=self.response_status)
         else:
-            assert self.response_status == status_code, GlobalErrorMsg.WRONG_STATUS_CODE.value
+            assert self.response_status == status_code, \
+                GlobalErrorMsg.error_msg(exp_code=status_code, act_code=self.response_status)
         return self

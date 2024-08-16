@@ -31,10 +31,10 @@ def setup_method_37017683():
 @allure.title("[Users | 37017683 ] GET Get User Profile")
 def test_get_user_profile_37017683(setup_method_37017683):
 
-    user_response = setup_method_37017683
+    response_get_user_profile = setup_method_37017683
 
     with allure.step("Verify. Response Status Code: 200"):
-        user_response.assert_status_code(200)
+        response_get_user_profile.assert_status_code(200)
 
     with allure.step("Verify. Response has a valid schema"):
-        user_response.validate(UserProfileResponseSchema)
+        response_get_user_profile.validate(UserProfileResponseSchema)
