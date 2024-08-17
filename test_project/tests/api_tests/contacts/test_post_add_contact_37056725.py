@@ -19,12 +19,13 @@ def setup_method_37056725():
         bearer_token=user_token,
         status_code=201)
 
-    contact_id = response_post_add_contact.json().get('_id')
+    contact_id = response_post_add_contact.json()['_id']
 
     yield Response(response_post_add_contact)
 
     # Delete Test Data
     ApiMethodsContacts.del_delete_contact(bearer_token=user_token, contact_id=contact_id)
+    ApiMethodsUsers.del_delete_user(bearer_token=user_token)
 
 
 @allure.id(TEST_ID)

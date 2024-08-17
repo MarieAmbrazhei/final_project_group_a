@@ -34,7 +34,7 @@ class ApiMethodsContacts:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
         """
-        post_url = ApiUrls.POST_ADD_CONTACT
+        post_url = ApiUrls.BASE_URL + ApiUrls.POST_ADD_CONTACT
 
         try:
             with allure.step(f"API | Add Contact"):
@@ -83,7 +83,7 @@ class ApiMethodsContacts:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
         """
-        get_url = ApiUrls.GET_CONTACT_LIST
+        get_url = ApiUrls.BASE_URL + ApiUrls.GET_CONTACT_LIST
 
         try:
             with allure.step(f"API | Get Contact List"):
@@ -120,7 +120,7 @@ class ApiMethodsContacts:
        _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
         postalCode, country, owner, __v
         """
-        get_url = ApiUrls.GET_CONTACT.format(contact_id=contact_id)
+        get_url = ApiUrls.BASE_URL + ApiUrls.GET_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Get Contact"):
@@ -163,7 +163,7 @@ class ApiMethodsContacts:
          postalCode, country
         """
 
-        put_url = ApiUrls.PUT_UPDATE_CONTACT.format(contact_id=contact_id)
+        put_url = ApiUrls.BASE_URL + ApiUrls.PUT_UPDATE_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Update Contact"):
@@ -171,6 +171,7 @@ class ApiMethodsContacts:
 
                 json_data = {k: v for k, v in kwargs.items() if v is not None}
                 json_data = {**json_data, **{'_id': contact_id}}
+
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
                 }
@@ -193,55 +194,27 @@ class ApiMethodsContacts:
     def patch_update_contact(
             *,
             bearer_token: str,
-            firstName: str,
-            lastName: str,
-            birthdate: str,
-            email: str,
-            phone: str,
-            street1: str,
-            street2: str,
-            city: str,
-            stateProvince: str,
-            postalCode: str,
-            country: str,
             contact_id: str,
-            status_code: int = HTTPStatus.OK
+            status_code: int = HTTPStatus.OK,
+            **kwargs
     ):
         """Available Response Keys:
         _id, firstName, lastName, birthdate, email, phone, street1, street2, city, stateProvince,
          postalCode, country, owner, __v
+        \nRequired fields:
+         firstName, lastName
+         \nOptional fields:
+         birthdate, email, phone, street1, street2, city, stateProvince,
+         postalCode, country
         """
 
-        patch_url = ApiUrls.PATCH_UPDATE_CONTACT.format(contact_id=contact_id)
+        patch_url = ApiUrls.BASE_URL + ApiUrls.PATCH_UPDATE_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Update Contact Partial"):
                 logger.info(f"Update Contact Partial")
 
-                json_data = {}
-                if firstName:
-                    json_data['firstName'] = firstName
-                if lastName:
-                    json_data['lastName'] = lastName
-                if birthdate:
-                    json_data['birthdate'] = birthdate
-                if email:
-                    json_data['email'] = email
-                if phone:
-                    json_data['phone'] = phone
-                if street1:
-                    json_data['street1'] = street1
-                if street2:
-                    json_data['street2'] = street2
-                if city:
-                    json_data['city'] = city
-                if stateProvince:
-                    json_data['stateProvince'] = stateProvince
-                if postalCode:
-                    json_data['postalCode'] = postalCode
-                if country:
-                    json_data['country'] = country
-
+                json_data = {k: v for k, v in kwargs.items() if v is not None}
                 json_data = {**json_data, **{'_id': contact_id}}
 
                 headers = {
@@ -273,7 +246,7 @@ class ApiMethodsContacts:
         """Delete a user.
         This request sends a DELETE request to the specified endpoint to delete a user.
         """
-        del_url = ApiUrls.DELETE_CONTACT.format(contact_id=contact_id)
+        del_url = ApiUrls.BASE_URL + ApiUrls.DELETE_CONTACT.format(contact_id=contact_id)
 
         try:
             with allure.step(f"API | Delete Contact"):

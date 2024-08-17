@@ -5,6 +5,7 @@ from test_project.base_cls.validate_response import Response
 from test_project.pydantic_schemas.user_schema import UserLogInSchema
 from test_project.pydantic_schemas.user_schema import UserLogInResponseSchema
 from test_project.utils.api.api_users import ApiMethodsUsers
+from test_project.utils.data_extractors import DataExtractor as DE
 
 """ Author: Yury Buzinau """
 TEST_ID = "37019507"
@@ -12,15 +13,19 @@ TEST_ID = "37019507"
 
 @pytest.fixture
 def setup_method_37019507():
-    user_token = ApiMethodsUsers.post_add_user(status_code=201).json()['token']
+    response_post_user, user_password = ApiMethodsUsers.post_add_user(
+        status_code=201,
+        return_pass=True
+    )
+    user_data = response_post_user.json()
+    user_email = DE.extract_value_by_key(user_data, 'email')
+    user_token = DE.extract_value_by_key(user_data, 'token')
 
     response_post_log_in_user = ApiMethodsUsers.post_log_in_user(
-        bearer_token=user_token,
-        email='edsdasdkf@fff.com',
-        password='1234567',
-        status_code=200
+        email=user_email,
+        password=user_password
     )
-    print(response_post_log_in_user.json())
+
     yield Response(response_post_log_in_user)
 
     # Delete Test Data

@@ -17,14 +17,17 @@ def setup_method_37058929():
         bearer_token=user_token,
         status_code=201)
 
-    contact_id = response_post_add_contact.json().get('_id')
+    contact_id = response_post_add_contact.json()['_id']
 
     response_delete_contact = ApiMethodsContacts.del_delete_contact(
         bearer_token=user_token,
         status_code=200,
         contact_id=contact_id)
 
-    return response_delete_contact
+    yield Response(response_delete_contact)
+
+    # Delete Test Data
+    ApiMethodsUsers.del_delete_user(bearer_token=user_token)
 
 
 @allure.id(TEST_ID)
@@ -38,4 +41,4 @@ def test_del_delete_contact_37058929(setup_method_37058929):
     response_delete_contact = setup_method_37058929
 
     with allure.step("Verify. Response Status Code: 200"):
-        assert response_delete_contact.status_code == 200, 'EDeletion failed with an error'
+        response_delete_contact.assert_status_code(200)

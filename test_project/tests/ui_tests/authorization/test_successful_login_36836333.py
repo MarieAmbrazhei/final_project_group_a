@@ -31,7 +31,7 @@ def test_successful_login_36836333(browsers_chrome):
     main_user_pass = Randoms.int_gen(10)
 
     with allure.step('Go to adding user page'):
-        add_user_page_helper.get_url(PageUrls.PAGE_ADD_USER_URL)
+        add_user_page_helper.get_url(PageUrls.BASE_URL + PageUrls.PAGE_ADD_USER_URL)
 
     with allure.step('Create Main User'):
         add_user_page_helper.register_main_user(

@@ -29,7 +29,7 @@ def test_complete_deletion(browsers_chrome):
     add_contact_helper = AddContactHelper(browser)
 
     with allure.step('Go to adding user page'):
-        add_user_page_helper.get_url(PageUrls.PAGE_ADD_USER_URL)
+        add_user_page_helper.get_url(PageUrls.BASE_URL + PageUrls.PAGE_ADD_USER_URL)
 
     with allure.step("Create Main User"):
         add_user_page_helper.register_main_user()

@@ -20,12 +20,13 @@ class ApiMethodsUsers:
             last_name: str = None,
             email: str = None,
             password: str = None,
-            status_code: int = HTTPStatus.CREATED
+            status_code: int = HTTPStatus.CREATED,
+            return_pass: bool = False
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
         """
-        post_url = ApiUrls.POST_ADD_USER
+        post_url = ApiUrls.BASE_URL + ApiUrls.POST_ADD_USER
 
         try:
             with allure.step(f"API | Create Main User"):
@@ -46,6 +47,8 @@ class ApiMethodsUsers:
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
                 logger.success(f"Add User. Status code: {act_code} ")
 
+                if return_pass:
+                    return response, json_data['password']
                 return response
 
         except Exception as e:
@@ -62,7 +65,7 @@ class ApiMethodsUsers:
         """Available Response Keys:
         _id, firstName, lastName, email, __v
         """
-        get_url = ApiUrls.GET_USER_PROFILE
+        get_url = ApiUrls.BASE_URL + ApiUrls.GET_USER_PROFILE
 
         try:
             with allure.step(f"API | Get Main User Profile"):
@@ -91,29 +94,23 @@ class ApiMethodsUsers:
     def patch_update_user(
             *,
             bearer_token: str,
-            first_name: str = None,
-            last_name: str = None,
-            email: str = None,
-            password: str = None,
-            status_code: int = HTTPStatus.OK
-
+            status_code: int = HTTPStatus.OK,
+            **kwargs
     ):
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
+        \nRequired fields:
+         firstName, lastName, email, password
         """
 
-        patch_url = ApiUrls.PATCH_UPDATE_USER
+        patch_url = ApiUrls.BASE_URL + ApiUrls.PATCH_UPDATE_USER
 
         try:
-            with allure.step(f"API | Update User"):
-                logger.info(f"Update User")
+            with allure.step("API | Update User"):
+                logger.info("Update User")
 
-                json_data = {
-                    "firstName": first_name,
-                    "lastName": last_name,
-                    "email": email,
-                    "password": password
-                }
+                json_data = {k: v for k, v in kwargs.items()}
+
                 headers = {
                     'Authorization': f'Bearer {bearer_token}'
                 }
@@ -124,7 +121,7 @@ class ApiMethodsUsers:
 
                 assert act_code == exp_code, \
                     GlobalErrorMsg.error_msg(exp_code=exp_code, act_code=act_code)
-                logger.success(f"Update user. Status code: {act_code} ")
+                logger.success(f"Update user. Status code: {act_code}")
 
                 return response
 
@@ -142,7 +139,7 @@ class ApiMethodsUsers:
         """Log out user from the system.
         The response should indicate success without necessarily returning user information.
         """
-        log_out_url = ApiUrls.POST_LOGOUT_USER
+        log_out_url = ApiUrls.BASE_URL + ApiUrls.POST_LOGOUT_USER
 
         try:
             with allure.step(f"API | User Log Out"):
@@ -170,7 +167,6 @@ class ApiMethodsUsers:
     @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=3)
     def post_log_in_user(
             *,
-            bearer_token: str,
             email: str = None,
             password: str = None,
             status_code: int = HTTPStatus.OK
@@ -178,7 +174,7 @@ class ApiMethodsUsers:
         """Available Response Keys:
         _id, firstName, lastName, email, __v, token
         """
-        log_in_url = ApiUrls.POST_LOGIN_USER
+        log_in_url = ApiUrls.BASE_URL + ApiUrls.POST_LOGIN_USER
 
         try:
             with allure.step(f"API | Log In User"):
@@ -188,11 +184,8 @@ class ApiMethodsUsers:
                     "email": email,
                     "password": password
                 }
-                headers = {
-                    'Authorization': f'Bearer {bearer_token}'
-                }
 
-                response = requests.post(url=log_in_url, headers=headers, json=json_data, timeout=5)
+                response = requests.post(url=log_in_url, json=json_data, timeout=5)
                 act_code = response.status_code
                 exp_code = status_code
 
@@ -216,7 +209,7 @@ class ApiMethodsUsers:
         """Delete a user.
         This request sends a DELETE request to the specified endpoint to delete a user.
         """
-        del_url = ApiUrls.DELETE_USER
+        del_url = ApiUrls.BASE_URL + ApiUrls.DELETE_USER
 
         try:
             with allure.step(f"API | Delete User"):

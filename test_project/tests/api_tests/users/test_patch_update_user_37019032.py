@@ -11,15 +11,20 @@ TEST_ID = "37019032"
 
 @pytest.fixture
 def setup_method_37019032():
-    user_token = ApiMethodsUsers.post_add_user(status_code=201).json()['token']
+    user_data = ApiMethodsUsers.post_add_user(status_code=201).json()
+    user_token = user_data['token']
+    user_info = user_data['user']
+
+    user_info.pop('_id')
+    user_info.pop('__v')
+    user_info["firstName"] = "Harry"
+    user_info["lastName"] = "Potter"
 
     response_patch_user = ApiMethodsUsers.patch_update_user(
         status_code=200,
         bearer_token=user_token,
-        first_name='Mary',
-        last_name='Gdf',
-        email='edlkf@fff.com',
-        password='1234567')
+        **user_info
+    )
 
     yield Response(response_patch_user)
 

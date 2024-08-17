@@ -18,29 +18,23 @@ def setup_method_37058825():
         bearer_token=user_token,
         status_code=201)
 
-    contact_id = response_post_add_contact.json().get('_id')
+    contact_data = response_post_add_contact.json()
+    contact_id = contact_data['_id']
+    contact_data["firstName"] = "Mary"
+    contact_data["lastName"] = "Puller"
 
     response_patch_update_contact = ApiMethodsContacts.patch_update_contact(
         status_code=200,
         bearer_token=user_token,
         contact_id=contact_id,
-        firstName='Mary',
-        lastName='Miler',
-        birthdate='1992-02-02',
-        email='amill2er@fake.com',
-        phone='8005554242',
-        street1='13 School St.',
-        street2='Apt. 5',
-        city='Washington',
-        stateProvince='QC',
-        postalCode='A1A1A1',
-        country='Canada',
+        **contact_data
     )
 
     yield Response(response_patch_update_contact)
 
     # Delete Test Data
     ApiMethodsContacts.del_delete_contact(bearer_token=user_token, contact_id=contact_id)
+    ApiMethodsUsers.del_delete_user(bearer_token=user_token)
 
 
 @allure.id(TEST_ID)
@@ -50,7 +44,6 @@ def setup_method_37058825():
                  name="PATCH Update Contact")
 @allure.title("[Contacts | 37058825 ] PATCH Update Contact")
 def test_patch_update_contact_37058825(setup_method_37058825):
-
     response_patch_update_contact = setup_method_37058825
 
     with allure.step("Verify. Response Status Code: 200"):
