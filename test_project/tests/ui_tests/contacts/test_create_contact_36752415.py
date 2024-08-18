@@ -13,12 +13,13 @@ TEST_ID = "36752415"
 
 
 @allure.id(TEST_ID)
+@allure.parent_suite('UI Tests')
 @allure.suite('Contacts')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36752415",
                  name="Create one contact")
 @allure.title("[Contacts | 36752415]  Create one contact")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
-def test_create_contact_36752415(browsers_chrome):
+def test_create_contact_36752415(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]
 
     # CREATE HELPERS INSTANCES
@@ -28,7 +29,7 @@ def test_create_contact_36752415(browsers_chrome):
     add_contact_helper = AddContactHelper(browser)
 
     with allure.step('Go to adding user page'):
-        add_user_page_helper.get_url(PageUrls.BASE_URL + PageUrls.PAGE_ADD_USER_URL)
+        add_user_page_helper.get_url(base_ui_url + PageUrls.PAGE_ADD_USER_URL)
 
     with allure.step("Create Main User"):
         add_user_page_helper.register_main_user()

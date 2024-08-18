@@ -29,8 +29,8 @@ def setup_method_37019186():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Users')
+@allure.parent_suite('API')
+@allure.suite('Users')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019186",
                  name=" POST Log Out User")
 @allure.title("[Users | 37019186 ]  POST Log Out User")

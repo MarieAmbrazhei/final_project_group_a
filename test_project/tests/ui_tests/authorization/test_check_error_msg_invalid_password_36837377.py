@@ -12,6 +12,7 @@ TEST_ID = "36837377"
 
 
 @allure.id(TEST_ID)
+@allure.parent_suite('UI Tests')
 @allure.suite('Authorization')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36837377",
                  name="Check error message. Invalid Password.")

@@ -33,8 +33,8 @@ def setup_method_37019032():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Users')
+@allure.parent_suite('API')
+@allure.suite('Users')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019032",
                  name="PATCH Update User")
 @allure.title("[Users | 37019032 ] PATCH Update User")

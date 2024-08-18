@@ -32,8 +32,8 @@ def setup_method_37057851():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Contacts')
+@allure.parent_suite('API')
+@allure.suite('Contacts')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37057851",
                  name="GET Get Contact List")
 @allure.title("[Contacts | 37057851 ] GET Get Contact List")

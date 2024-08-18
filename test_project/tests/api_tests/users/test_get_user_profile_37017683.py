@@ -24,8 +24,8 @@ def setup_method_37017683():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Users')
+@allure.parent_suite('API')
+@allure.suite('Users')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37017683",
                  name="GET Get User Profile")
 @allure.title("[Users | 37017683 ] GET Get User Profile")

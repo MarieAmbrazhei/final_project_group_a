@@ -13,12 +13,13 @@ TEST_ID = "36836333"
 
 
 @allure.id(TEST_ID)
+@allure.parent_suite('UI Tests')
 @allure.suite('Authorization')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36836333",
                  name="Successful Login")
 @allure.title("[Authorization | 36836333]  Successful Login")
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
-def test_successful_login_36836333(browsers_chrome):
+def test_successful_login_36836333(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]
 
     # CREATE HELPERS INSTANCES
@@ -31,7 +32,7 @@ def test_successful_login_36836333(browsers_chrome):
     main_user_pass = Randoms.int_gen(10)
 
     with allure.step('Go to adding user page'):
-        add_user_page_helper.get_url(PageUrls.BASE_URL + PageUrls.PAGE_ADD_USER_URL)
+        add_user_page_helper.get_url(base_ui_url + PageUrls.PAGE_ADD_USER_URL)
 
     with allure.step('Create Main User'):
         add_user_page_helper.register_main_user(

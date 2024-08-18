@@ -29,8 +29,8 @@ def setup_method_37056725():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Contacts')
+@allure.parent_suite('API')
+@allure.suite('Contacts')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37056725",
                  name="POST Add contact")
 @allure.title("[Contacts | 37056725 ] POST Add contact")

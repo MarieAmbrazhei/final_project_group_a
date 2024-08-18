@@ -21,8 +21,8 @@ def setup_method_36995050():
 
 
 @allure.id(TEST_ID)
-@allure.suite('API')
-@allure.sub_suite('Users')
+@allure.parent_suite('API')
+@allure.suite('Users')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36995050",
                  name="POST Add Main User")
 @allure.title("[Users | 36995050 ] POST Add Main User")
