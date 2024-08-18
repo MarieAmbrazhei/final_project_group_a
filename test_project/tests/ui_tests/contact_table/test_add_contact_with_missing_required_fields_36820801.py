@@ -17,6 +17,8 @@ TEST_ID = "36820801"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820801",
                  name="Add Contact With Missing Required Fields")
 @allure.title("[Contact list |36820801] Add Contact With Missing Required Fields")
+@pytest.mark.ui
+@pytest.mark.fast_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_add_contact_with_missing_required_fields(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

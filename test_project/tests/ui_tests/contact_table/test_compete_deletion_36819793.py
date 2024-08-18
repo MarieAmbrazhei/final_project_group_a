@@ -18,6 +18,9 @@ TEST_ID = "36819793"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36819793",
                  name="Complete Deletion of Contacts")
 @allure.title("[Contact list |36819793] Complete Deletion of Contact")
+@pytest.mark.ui
+@pytest.mark.fast_ui
+@pytest.mark.smoke_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_complete_deletion(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

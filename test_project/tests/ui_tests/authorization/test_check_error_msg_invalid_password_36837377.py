@@ -17,6 +17,8 @@ TEST_ID = "36837377"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36837377",
                  name="Check error message. Invalid Password.")
 @allure.title("[Authorization | 36837377] Check error message. Invalid Password.")
+@pytest.mark.ui
+@pytest.mark.fast_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_check_error_msg_invalid_password_36837377(browsers_chrome):
     browser = browsers_chrome[0]

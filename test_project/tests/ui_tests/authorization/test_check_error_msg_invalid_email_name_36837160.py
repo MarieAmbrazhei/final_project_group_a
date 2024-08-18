@@ -17,6 +17,8 @@ TEST_ID = "36837160"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36837160",
                  name="Check error message. Invalid email name")
 @allure.title("[Authorization | 36837160] Check error message. Invalid email name")
+@pytest.mark.ui
+@pytest.mark.fast_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_check_error_msg_invalid_email_name_36837160(browsers_chrome):
     browser = browsers_chrome[0]

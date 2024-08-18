@@ -34,6 +34,7 @@ def setup_method_37019186():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019186",
                  name=" POST Log Out User")
 @allure.title("[Users | 37019186 ]  POST Log Out User")
+@pytest.mark.api
 def test_post_log_out_user_37019186(setup_method_37019186):
 
     response_log_out_user = setup_method_37019186

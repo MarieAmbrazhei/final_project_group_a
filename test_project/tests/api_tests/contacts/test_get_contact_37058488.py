@@ -38,6 +38,7 @@ def setup_method_37058488():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37058488",
                  name="GET Get Contact")
 @allure.title("[Contacts | 37058488 ] GET Get Contact")
+@pytest.mark.api
 def test_get_contact_37058488(setup_method_37058488):
 
     response_get_contact = setup_method_37058488

@@ -25,6 +25,7 @@ def setup_method_37019711():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019711",
                  name="DEL Delete User")
 @allure.title("[Users | 37019711 ] DEL Delete User")
+@pytest.mark.api
 def test_del_delete_user_37019711(setup_method_37019711):
 
     response_delete_user = setup_method_37019711

@@ -17,6 +17,8 @@ TEST_ID = "36820758"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820758",
                  name="Add Ten Contacts To Table")
 @allure.title("[Contact list | 36820758] Add Ten Contacts To Table")
+@pytest.mark.ui
+@pytest.mark.slow_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_add_ten_contacts_to_table(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

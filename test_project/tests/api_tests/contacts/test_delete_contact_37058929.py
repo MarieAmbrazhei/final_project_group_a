@@ -36,6 +36,7 @@ def setup_method_37058929():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37058929",
                  name="DELETE Delete Contact")
 @allure.title("[Contacts | 37058929 ] DELETE Delete Contact")
+@pytest.mark.api
 def test_del_delete_contact_37058929(setup_method_37058929):
 
     response_delete_contact = setup_method_37058929

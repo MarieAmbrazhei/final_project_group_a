@@ -47,6 +47,7 @@ def setup_method_37058584():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37058584",
                  name=" PUT Update Contact")
 @allure.title("[Contacts | 37058584  ]  PUT Update Contact")
+@pytest.mark.api
 def test_put_update_contact_37058584(setup_method_37058584):
 
     response_put_update_contact = setup_method_37058584

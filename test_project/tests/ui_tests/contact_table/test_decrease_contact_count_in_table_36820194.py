@@ -18,6 +18,8 @@ TEST_ID = "36820194"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820194",
                  name="Decrease Number of Contacts in the Table")
 @allure.title("[Contact list |36820194] Decrease Number of Contacts in the Table")
+@pytest.mark.ui
+@pytest.mark.fast_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_decrease_contact_count_in_table(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

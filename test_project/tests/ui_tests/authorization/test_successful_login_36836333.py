@@ -18,6 +18,9 @@ TEST_ID = "36836333"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36836333",
                  name="Successful Login")
 @allure.title("[Authorization | 36836333]  Successful Login")
+@pytest.mark.ui
+@pytest.mark.fast_ui
+@pytest.mark.smoke_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_successful_login_36836333(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

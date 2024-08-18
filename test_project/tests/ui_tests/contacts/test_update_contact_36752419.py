@@ -21,6 +21,9 @@ TEST_ID = "36752419"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36752419",
                  name="Update one contact")
 @allure.title("[Contacts | 36752419] Update one contact")
+@pytest.mark.ui
+@pytest.mark.fast_ui
+@pytest.mark.smoke_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_update_contact_36752419(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]

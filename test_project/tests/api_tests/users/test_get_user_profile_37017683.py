@@ -29,6 +29,7 @@ def setup_method_37017683():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37017683",
                  name="GET Get User Profile")
 @allure.title("[Users | 37017683 ] GET Get User Profile")
+@pytest.mark.api
 def test_get_user_profile_37017683(setup_method_37017683):
 
     response_get_user_profile = setup_method_37017683

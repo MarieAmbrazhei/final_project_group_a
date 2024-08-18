@@ -38,6 +38,7 @@ def setup_method_37019032():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019032",
                  name="PATCH Update User")
 @allure.title("[Users | 37019032 ] PATCH Update User")
+@pytest.mark.api
 def test_post_add_main_user_37019032(setup_method_37019032):
 
     response_patch_user = setup_method_37019032

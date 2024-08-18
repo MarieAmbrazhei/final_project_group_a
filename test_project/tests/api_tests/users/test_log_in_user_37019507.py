@@ -38,6 +38,7 @@ def setup_method_37019507():
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/37019507",
                  name="POST Add Main User")
 @allure.title("[Users | 37019507 ] POST Add Main User")
+@pytest.mark.api
 def test_post_log_in_user_37019507(setup_method_37019507):
 
     response_post_log_in_user = setup_method_37019507

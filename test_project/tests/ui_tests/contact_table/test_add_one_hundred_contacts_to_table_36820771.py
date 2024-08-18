@@ -12,13 +12,14 @@ from test_project.utils.constants.site_headers_names import Headers
 TEST_ID = "36820771"
 
 
-@pytest.mark.skip(reason="Long time test")
 @allure.id(TEST_ID)
 @allure.parent_suite('UI Tests')
 @allure.suite('Contact Table')
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820771",
                  name="Add One Hundred Contacts To Table")
 @allure.title("[Contact list | 36820771] Add One Hundred Contacts To Table")
+@pytest.mark.ui
+@pytest.mark.slow_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
 def test_add_one_hundred_contacts_to_table(browsers_chrome, base_ui_url):
     browser = browsers_chrome[0]
