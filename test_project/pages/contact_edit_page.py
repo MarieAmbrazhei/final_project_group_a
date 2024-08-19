@@ -73,44 +73,44 @@ class ContactEditHelper(BasePage):
     ):
         if all_fields or first_name:
             self.get_input_first_name().send_keys(Keys.CONTROL + "A")
-            self.get_input_first_name().send_keys(Randoms.rand_word(length=10))
+            self.get_input_first_name().send_keys(Randoms.first_name())
 
         if all_fields or last_name:
             self.get_input_last_name().send_keys(Keys.CONTROL + "A")
-            self.get_input_last_name().send_keys(Randoms.rand_word(length=10))
+            self.get_input_last_name().send_keys(Randoms.last_name())
 
         if all_fields or date_of_birth:
             self.get_input_date_of_birth().send_keys(Keys.CONTROL + "A")
-            self.get_input_date_of_birth().send_keys(Randoms.date_of_birth())
+            self.get_input_date_of_birth().send_keys(Randoms.dob())
 
         if all_fields or email:
             self.get_input_email().send_keys(Keys.CONTROL + "A")
-            self.get_input_email().send_keys(Randoms.email_gen(length=10))
+            self.get_input_email().send_keys(Randoms.email())
 
         if all_fields or phone:
             self.get_input_phone().send_keys(Keys.CONTROL + "A")
-            self.get_input_phone().send_keys(Randoms.int_gen(length=10))
+            self.get_input_phone().send_keys(Randoms.phone_number())
 
         if all_fields or str_address_one:
             self.get_input_str_address_one().send_keys(Keys.CONTROL + "A")
-            self.get_input_str_address_one().send_keys(Randoms.rand_word(length=15))
+            self.get_input_str_address_one().send_keys(Randoms.street_address())
 
         if all_fields or str_address_two:
             self.get_input_str_address_two().send_keys(Keys.CONTROL + "A")
-            self.get_input_str_address_two().send_keys(Randoms.rand_word(length=15))
+            self.get_input_str_address_two().send_keys(Randoms.street_address())
 
         if all_fields or city:
             self.get_input_city().send_keys(Keys.CONTROL + "A")
-            self.get_input_city().send_keys(Randoms.rand_word(length=10))
+            self.get_input_city().send_keys(Randoms.city())
 
         if all_fields or state_of_province:
             self.get_input_state_of_province().send_keys(Keys.CONTROL + "A")
-            self.get_input_state_of_province().send_keys(Randoms.rand_word(length=10))
+            self.get_input_state_of_province().send_keys(Randoms.state())
 
         if all_fields or postal_code:
             self.get_input_postal_code().send_keys(Keys.CONTROL + "A")
-            self.get_input_postal_code().send_keys(Randoms.int_gen(length=4))
+            self.get_input_postal_code().send_keys(Randoms.postcode())
 
         if all_fields or country:
             self.get_input_country().send_keys(Keys.CONTROL + "A")
-            self.get_input_country().send_keys(Randoms.rand_word(length=10))
+            self.get_input_country().send_keys(Randoms.country())

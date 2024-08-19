@@ -33,11 +33,11 @@ class AddUserPageHelper(BasePage):
             email=None,
             password=None):
 
-        self.get_input_first_name().send_keys(Randoms.rand_word(length=10))
-        self.get_input_last_name().send_keys(Randoms.rand_word(length=10))
+        self.get_input_first_name().send_keys(Randoms.first_name())
+        self.get_input_last_name().send_keys(Randoms.last_name())
 
         if not email:
-            self.get_input_email_name().send_keys(Randoms.email_gen(length=10))
+            self.get_input_email_name().send_keys(Randoms.email())
         else:
             self.get_input_email_name().send_keys(email)
 
