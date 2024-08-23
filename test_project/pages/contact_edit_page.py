@@ -89,7 +89,7 @@ class ContactEditHelper(BasePage):
 
         if all_fields or phone:
             self.get_input_phone().send_keys(Keys.CONTROL + "A")
-            self.get_input_phone().send_keys(Randoms.phone_number())
+            self.get_input_phone().send_keys(Randoms.int_gen(10))
 
         if all_fields or str_address_one:
             self.get_input_str_address_one().send_keys(Keys.CONTROL + "A")

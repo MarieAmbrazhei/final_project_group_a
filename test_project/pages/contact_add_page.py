@@ -60,7 +60,7 @@ class AddContactHelper(BasePage):
         self.get_input_last_name().send_keys(Randoms.last_name())
         self.get_input_date_of_birth().send_keys(Randoms.dob())
         self.get_input_email().send_keys(Randoms.email())
-        self.get_input_phone().send_keys(Randoms.phone_number())
+        self.get_input_phone().send_keys(Randoms.int_gen(10))
         self.get_input_str_address_one().send_keys(Randoms.street_address())
         self.get_input_str_address_two().send_keys(Randoms.street_address())
         self.get_input_city().send_keys(Randoms.city())
