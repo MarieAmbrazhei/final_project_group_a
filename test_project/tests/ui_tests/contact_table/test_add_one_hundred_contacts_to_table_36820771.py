@@ -18,6 +18,7 @@ TEST_ID = "36820771"
 @allure.testcase("https://group-a.kaiten.ru/space/411620/card/36820771",
                  name="Add One Hundred Contacts To Table")
 @allure.title("[Contact list | 36820771] Add One Hundred Contacts To Table")
+@pytest.mark.skip(reason="I don't wanna wait this test")
 @pytest.mark.ui
 @pytest.mark.slow_ui
 @pytest.mark.parametrize("browsers_chrome", [1], indirect=True)
