@@ -68,7 +68,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -104,7 +104,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -141,7 +141,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -186,7 +186,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -232,7 +232,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -268,5 +268,5 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise

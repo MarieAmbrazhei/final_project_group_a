@@ -53,7 +53,7 @@ def test_add_ten_contacts_to_table(browsers_chrome, base_ui_url):
             common_elements_helper.get_page_title(Headers.CONTACT_LIST)
 
     with allure.step('Ten clients appeared in the table'):
-        expected_number_of_rows = 10
+        expected_number_of_rows = 5  # TODO EXPECTED FAIL SHOULD BE 10
         actual_number_of_rows = len(contact_list_helper.get_all_table_rows())
 
         assert expected_number_of_rows == actual_number_of_rows, \

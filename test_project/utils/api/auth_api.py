@@ -38,7 +38,7 @@ class ApiMethodsAuthentication:
             return session
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
 
