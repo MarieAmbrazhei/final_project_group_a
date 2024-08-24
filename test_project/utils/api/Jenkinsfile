@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        stage('Run API Tests') {
+        stage('Run api Tests') {
             steps {
                 sh '''
                     . venv/bin/activate
