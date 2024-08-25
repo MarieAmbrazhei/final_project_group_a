@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'TEST_SUITE', choices: ['ui', 'api', 'fast_ui', 'slow_ui', 'smoke_ui'],
+        choice(name: 'TEST_MARKER', choices: ['ui', 'api', 'fast_ui', 'slow_ui', 'smoke_ui'],
         description: 'Choose the test suite to run')
     }
     stages {
