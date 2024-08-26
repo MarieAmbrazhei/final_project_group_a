@@ -43,7 +43,7 @@ class ApiMethodsContacts:
                 json_data = {
                     "firstName": first_name if first_name else Randoms.first_name(),
                     "lastName": last_name if last_name else Randoms.last_name(),
-                    "birthdate": birthdate if birthdate else Randoms.date_of_birth(),
+                    "birthdate": birthdate if birthdate else Randoms.dob(),
                     "email": email if email else Randoms.email(),
                     "phone": phone if phone else Randoms.int_gen(length=6),
                     "street1": street1 if street1 else Randoms.street_address(),
@@ -68,7 +68,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -104,7 +104,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -141,7 +141,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -186,7 +186,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -232,7 +232,7 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise
 
     @staticmethod
@@ -268,5 +268,5 @@ class ApiMethodsContacts:
                 return response
 
         except Exception as e:
-            logger.warning(f"Error while executing the request: {str(e)}")
+            logger.error(f"Error while executing the request: {str(e)}")
             raise

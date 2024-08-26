@@ -56,17 +56,17 @@ class AddContactHelper(BasePage):
     """ METHODS """
 
     def fill_contact_with_random_data(self):
-        self.get_input_first_name().send_keys(Randoms.rand_word(length=10))
-        self.get_input_last_name().send_keys(Randoms.rand_word(length=10))
-        self.get_input_date_of_birth().send_keys(Randoms.date_of_birth())
-        self.get_input_email().send_keys(Randoms.email_gen(length=10))
-        self.get_input_phone().send_keys(Randoms.int_gen(length=10))
-        self.get_input_str_address_one().send_keys(Randoms.rand_word(length=15))
-        self.get_input_str_address_two().send_keys(Randoms.rand_word(length=15))
-        self.get_input_city().send_keys(Randoms.rand_word(length=10))
-        self.get_input_state_of_province().send_keys(Randoms.rand_word(length=10))
-        self.get_input_postal_code().send_keys(Randoms.int_gen(length=4))
-        self.get_input_country().send_keys(Randoms.rand_word(length=10))
+        self.get_input_first_name().send_keys(Randoms.first_name())
+        self.get_input_last_name().send_keys(Randoms.last_name())
+        self.get_input_date_of_birth().send_keys(Randoms.dob())
+        self.get_input_email().send_keys(Randoms.email())
+        self.get_input_phone().send_keys(Randoms.int_gen(10))
+        self.get_input_str_address_one().send_keys(Randoms.street_address())
+        self.get_input_str_address_two().send_keys(Randoms.street_address())
+        self.get_input_city().send_keys(Randoms.city())
+        self.get_input_state_of_province().send_keys(Randoms.state())
+        self.get_input_postal_code().send_keys(Randoms.postcode())
+        self.get_input_country().send_keys(Randoms.country())
 
     def fill_contact_with_invalid_data(self):
         self.fill_field(AddContactLocators.LOCATOR_INPUT_FIRST_NAME, '')
