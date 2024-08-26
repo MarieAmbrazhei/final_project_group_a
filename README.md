@@ -1,4 +1,4 @@
-### final_project_group_a
+### project_group_a
 
 ## About
 
@@ -19,6 +19,10 @@ Made by Yury Buzinau and Marie Ambrazhei.
 │   └── workflows/
 │       └── ... (YAML files for CI/CD configurations)
 ├── allure_reports/            # Test reports generated after test execution
+├── ci/                        # CI/CD related files
+│   ├── Jenkinsfile_api        # Jenkinsfile for API pipeline
+│   ├── Jenkinsfile_ui         # Jenkinsfile for UI pipeline
+│   └── Dockerfile             # Dockerfile for building Jenkins image with Pyt
 ├── test_project/
 │   ├── base_cls/
 │   │   └── validate_response.py  # Manages HTTP responses, logs details, validates JSON data, asserts status codes
@@ -59,19 +63,17 @@ Made by Yury Buzinau and Marie Ambrazhei.
 
 ### How to run tests
 
-1. To execute ALL tests w/ DEBUG log level
-    + `pytest . --log-level=DEBUG`
-2. To Execute All Tests:
+1. To Execute All Tests:
     + `pytest .`
-3. To Execute API Tests:
+2. To Execute API Tests:
     + `pytest . -m api`
-4. To execute UI test:
+3. To execute UI test:
     + `pytest . -m ui`
-5. To Execute Fast UI Tests (takes < 20 seconds):
+4. To Execute Fast UI Tests (takes < 20 seconds):
     + `pytest . -m fast_ui`
-6. To Execute Slow UI Tests (takes > 20 seconds):
+5. To Execute Slow UI Tests (takes > 20 seconds):
     + `pytest . -m slow_ui`
-7. To Execute Smoke UI Tests (critical tests):
+6. To Execute Smoke UI Tests (critical tests):
     + `pytest . -m smoke_ui`
 
 ### Available markers:
@@ -102,34 +104,98 @@ Options:
   --headless                   To run browser in headless mode
 ```
 
-### Logging with Loguru.
+### Jenkins Setup with Python in Docker
 
-# Install Loguru:
+This guide walks you through the process of setting up Jenkins in a Docker container, installing
+Python and Allure, and configuring the environment for running your first Jenkins job.
 
-- Install Loguru using pip:
-  `pip install loguru`
+### Prerequisites
 
-## Using the Logger:
+- **Docker** installed on your machine.
+- **GitHub Personal Access Token** (for accessing private repositories).
 
-Import Loguru and start logging with just a few lines of code:
-`from loguru import logger`
-`logger.success(f"Add User. Status code: {act_code} ")`
+### Step 1: Pull Jenkins Docker Image
 
-# Structured logging as needed. Loguru helps you track and manage logging efficiently:
+Pull the latest Jenkins image from Docker Hub:
 
-`logger.info(f"Delete User")`
-`logger.success(f"Delete User. Status code: {act_code} ")`
-`logger.warning(f"Error while executing the request: {str(e)}")`
+```bash
+docker pull jenkins/jenkins
+```
 
-### Data Generation.
+### Step 2: Build the Docker Image
 
-To create realistic and diverse test data, we use the Faker library.
-Faker generates various types of random data needed for testing.
+```
+docker build -t my-project-image .
+```
 
-## Install Faker:
+### Step 3: Run Jenkins Container
 
-`pip install faker`
+```
+docker run -d -p 8080:8080 -p 50000:50000 --restart=on-failure jenkins/jenkins
+```
 
-## Import Faker:
+### Step 4: Retrieve Jenkins Initial Admin Password
 
-`  from faker import Faker`
+To access Jenkins for the first time, you'll need the initial admin password.
+Run the following command:
+
+```
+docker exec -it <container-id> cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+Replace <container-id> with your actual container ID. The command will return a password
+similar to this:
+
+```
+4d4df420dd3c44939b1769d74fb21f98
+```
+
+### Step 5: Access Jenkins
+
+Open your browser and go to http://localhost:8080. Use the following credentials to log in:
+
+Username: admin
+Password: <retrieved-password>
+Replace <retrieved-password> with the password obtained in Step 4.
+
+### Step 6: Setup First Job - Freestyle
+
+- In Jenkins, create a new job of type "Freestyle project."
+- Under Source Code Management, select GIT.
+- Copy your repository URL (HTTPS) and paste it in the repository URL field.
+- To set up credentials, follow these steps:
+    - Click on Add next to the Credentials field.
+    - Domain: Leave as Global or choose an appropriate domain.
+    - Kind: Select Username with password.
+    - Scope: Choose Global (Jenkins, nodes, items, all child items, etc.).
+    - Username: Enter your GitHub username.
+    - Password: Enter the GitHub Personal Access Token.
+    - ID: (Optional) Provide an identifier for these credentials.
+    - Description: (Optional) Provide a description for these credentials.
+- Go to Branches to build and specify your Git branch.
+- In the Build section, select Add build step -> Execute shell and provide
+  the necessary shell commands.
+
+### Step 7: Configure Jenkins Environment
+
+Connect to your running Jenkins container and install the necessary tools:
+
+```
+docker exec -u root -it <container-id> /bin/bash
+```
+
+Inside the container, run the following commands:
+Update package lists:
+
+```
+apt-get update
+```
+
+Install Python 3 and pip:
+
+```
+apt-get install python3
+apt-get install python3-pip -y
+python3 --version
+pip3 --version
+```
