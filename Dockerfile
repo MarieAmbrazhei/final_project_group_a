@@ -30,12 +30,6 @@ RUN apt-get update && \
     libcups2 \
     libgbm1
 
-# Install Google Chrome latest stable version
-RUN wget --no-verbose -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-  && apt install -y /tmp/chrome.deb \
-  && rm /tmp/chrome.deb
-
-
 # Install xvfb for headless working
 RUN apt-get install -y xvfb
 
